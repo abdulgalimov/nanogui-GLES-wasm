@@ -114,11 +114,10 @@ Screen::Screen(const Vector2i &size, const std::string &caption, bool resizable,
                int stencilBits, int nSamples,
                unsigned int glMajor, unsigned int glMinor,double scrollValx)
     : Widget(nullptr), mGLFWWindow(nullptr), mNVGContext(nullptr),
-      mCursor(Cursor::Arrow), mBackground(0.3f, 0.3f, 0.32f, 1.f), mCaption(caption),
+      mCursor(Cursor::Arrow), mBackground(0.3f, 0.3f, 0.32f, 0.f), mCaption(caption),
       mShutdownGLFWOnDestruct(false), mFullscreen(fullscreen) {
     memset(mCursors, 0, sizeof(GLFWcursor *) * (int) Cursor::CursorCount);
     scrollVal=scrollValx;
-    
     
     glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_ES_API);
     glfwWindowHint(GLFW_CONTEXT_CREATION_API, GLFW_EGL_CONTEXT_API);
@@ -382,10 +381,13 @@ void Screen::setSize(const Vector2i &size) {
 #endif
 }
 
-void Screen::drawAll() {
+void Screen::clear() {
+    glColorMask(false, false, false, true);
     glClearColor(mBackground[0], mBackground[1], mBackground[2], mBackground[3]);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+}
 
+void Screen::drawAll() {
     drawContents();
     drawWidgets();
 

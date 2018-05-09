@@ -258,9 +258,10 @@ public:
     /// Restore the state of the widget from the given \ref Serializer instance
     virtual bool load(Serializer &s);
 
-protected:
     /// Free all resources used by the widget and any children
     virtual ~Widget();
+
+protected:
 
     /**
      * Convenience definition for subclasses to get the full icon scale for this

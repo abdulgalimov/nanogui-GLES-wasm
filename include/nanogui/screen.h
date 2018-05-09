@@ -104,6 +104,9 @@ public:
     /// Set window size
     void setSize(const Vector2i& size);
 
+    /// Clear scene
+    virtual void clear();
+
     /// Draw the Screen contents
     virtual void drawAll();
 

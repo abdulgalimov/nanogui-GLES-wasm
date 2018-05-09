@@ -68,7 +68,7 @@ public:
      */
     virtual Vector2i preferredSize(NVGcontext *ctx, const Widget *widget) const = 0;
 
-protected:
+//protected:
     /// Default destructor (exists for inheritance).
     virtual ~Layout() { }
 };
